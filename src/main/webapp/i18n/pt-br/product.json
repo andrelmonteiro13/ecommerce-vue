@@ -1,0 +1,35 @@
+{
+  "ecommerceApp": {
+    "product": {
+      "home": {
+        "title": "Products",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Product",
+        "createOrEditLabel": "Criar ou editar Product",
+        "notFound": "Nenhum Product encontrado"
+      },
+      "created": "Um novo Product foi criado com o identificador { param }",
+      "updated": "Um Product foi atualizado com o identificador { param }",
+      "deleted": "Um Product foi excluído com o identificador { param }",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Product { id }?"
+      },
+      "detail": {
+        "title": "Product"
+      },
+      "id": "ID",
+      "name": "Name",
+      "slug": "Slug",
+      "description": "Description",
+      "price": "Price",
+      "promotionalPrice": "Promotional Price",
+      "sku": "Sku",
+      "imageUrl": "Image Url",
+      "stock": "Stock",
+      "active": "Active",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "category": "Category"
+    }
+  }
+}

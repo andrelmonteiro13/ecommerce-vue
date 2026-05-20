@@ -1,0 +1,137 @@
+enum CustomerOrderStatus {
+  CREATED
+  WAITING_PAYMENT
+  PAID
+  SEPARATING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  APPROVED
+  REFUSED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  PIX
+  CREDIT_CARD
+  DEBIT_CARD
+  BOLETO
+  CASH
+}
+
+enum ShipmentStatus {
+  PENDING
+  PREPARING
+  SHIPPED
+  DELIVERED
+  RETURNED
+}
+
+entity Category {
+  name String required minlength(2) maxlength(100)
+  description String maxlength(255)
+  active Boolean required
+}
+
+entity Product {
+  name String required minlength(3) maxlength(150)
+  slug String required unique
+  description TextBlob
+  price BigDecimal required min(0)
+  promotionalPrice BigDecimal min(0)
+  sku String unique
+  imageUrl String maxlength(500)
+  stock Integer required min(0)
+  active Boolean required
+  createdDate Instant
+  updatedDate Instant
+}
+
+entity Customer {
+  firstName String required maxlength(80)
+  lastName String required maxlength(80)
+  email String required unique
+  phone String maxlength(30)
+  document String maxlength(20)
+  createdDate Instant
+}
+
+entity Address {
+  street String required maxlength(150)
+  number String maxlength(20)
+  complement String maxlength(100)
+  district String maxlength(100)
+  city String required maxlength(100)
+  state String required maxlength(2)
+  zipCode String required maxlength(20)
+  country String required maxlength(80)
+}
+
+entity ShoppingCart {
+  createdDate Instant required
+  updatedDate Instant
+}
+
+entity ShoppingCartItem {
+  quantity Integer required min(1)
+  unitPrice BigDecimal required min(0)
+}
+
+entity CustomerOrder {
+  orderNumber String required unique
+  orderDate Instant required
+  status CustomerOrderStatus required
+  subtotal BigDecimal required min(0)
+  discount BigDecimal min(0)
+  shippingCost BigDecimal min(0)
+  totalPrice BigDecimal required min(0)
+  notes String maxlength(500)
+}
+
+entity CustomerOrderItem {
+  quantity Integer required min(1)
+  unitPrice BigDecimal required min(0)
+  totalPrice BigDecimal required min(0)
+}
+
+entity Payment {
+  method PaymentMethod required
+  status PaymentStatus required
+  amount BigDecimal required min(0)
+  transactionCode String maxlength(100)
+  paidDate Instant
+}
+
+entity Shipment {
+  trackingNumber String maxlength(100)
+  carrier String maxlength(100)
+  status ShipmentStatus required
+  shippedDate Instant
+  deliveredDate Instant
+}
+
+relationship ManyToOne {
+  Product{category(name)} to Category
+  Address{customer(email)} to Customer
+  ShoppingCart{customer(email)} to Customer
+  ShoppingCartItem{cart} to ShoppingCart
+  ShoppingCartItem{product(name)} to Product
+  CustomerOrder{customer(email)} to Customer
+  CustomerOrder{user(login)} to User with builtInEntity
+  CustomerOrder{shippingAddress} to Address
+  CustomerOrderItem{order(orderNumber)} to CustomerOrder
+  CustomerOrderItem{product(name)} to Product
+  Payment{order(orderNumber)} to CustomerOrder
+  Shipment{order(orderNumber)} to CustomerOrder
+}
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination
+filter *

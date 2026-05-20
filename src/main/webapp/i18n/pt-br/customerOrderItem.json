@@ -1,0 +1,28 @@
+{
+  "ecommerceApp": {
+    "customerOrderItem": {
+      "home": {
+        "title": "Customer Order Items",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Customer Order Item",
+        "createOrEditLabel": "Criar ou editar Customer Order Item",
+        "notFound": "Nenhum Customer Order Item encontrado"
+      },
+      "created": "Um novo Customer Order Item foi criado com o identificador { param }",
+      "updated": "Um Customer Order Item foi atualizado com o identificador { param }",
+      "deleted": "Um Customer Order Item foi excluído com o identificador { param }",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Customer Order Item { id }?"
+      },
+      "detail": {
+        "title": "Customer Order Item"
+      },
+      "id": "ID",
+      "quantity": "Quantity",
+      "unitPrice": "Unit Price",
+      "totalPrice": "Total Price",
+      "order": "Order",
+      "product": "Product"
+    }
+  }
+}

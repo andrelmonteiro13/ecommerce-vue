@@ -1,0 +1,49 @@
+{
+  "annotations": {
+    "changelogDate": "20260507172719"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "trackingNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "carrier",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ShipmentStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PENDING,PREPARING,SHIPPED,DELIVERED,RETURNED"
+    },
+    {
+      "fieldName": "shippedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "deliveredDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Shipment",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "orderNumber",
+      "otherEntityName": "customerOrder",
+      "relationshipName": "order",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

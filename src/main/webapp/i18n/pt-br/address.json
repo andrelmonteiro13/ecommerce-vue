@@ -1,0 +1,32 @@
+{
+  "ecommerceApp": {
+    "address": {
+      "home": {
+        "title": "Addresses",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Address",
+        "createOrEditLabel": "Criar ou editar Address",
+        "notFound": "Nenhum Address encontrado"
+      },
+      "created": "Um novo Address foi criado com o identificador { param }",
+      "updated": "Um Address foi atualizado com o identificador { param }",
+      "deleted": "Um Address foi excluído com o identificador { param }",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Address { id }?"
+      },
+      "detail": {
+        "title": "Address"
+      },
+      "id": "ID",
+      "street": "Street",
+      "number": "Number",
+      "complement": "Complement",
+      "district": "District",
+      "city": "City",
+      "state": "State",
+      "zipCode": "Zip Code",
+      "country": "Country",
+      "customer": "Customer"
+    }
+  }
+}

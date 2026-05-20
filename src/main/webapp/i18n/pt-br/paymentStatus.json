@@ -1,0 +1,12 @@
+{
+  "ecommerceApp": {
+    "PaymentStatus": {
+      "null": "",
+      "PENDING": "PENDING",
+      "APPROVED": "APPROVED",
+      "REFUSED": "REFUSED",
+      "CANCELLED": "CANCELLED",
+      "REFUNDED": "REFUNDED"
+    }
+  }
+}

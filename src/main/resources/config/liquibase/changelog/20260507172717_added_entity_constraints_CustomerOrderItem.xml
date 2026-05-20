@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity CustomerOrderItem.
+    -->
+    <changeSet id="20260507172717-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="order_id"
+                                 baseTableName="customer_order_item"
+                                 constraintName="fk_customer_order_item__order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="customer_order"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="product_id"
+                                 baseTableName="customer_order_item"
+                                 constraintName="fk_customer_order_item__product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="product"
+                                 />
+    </changeSet>
+</databaseChangeLog>

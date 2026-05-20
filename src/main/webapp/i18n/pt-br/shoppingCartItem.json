@@ -1,0 +1,27 @@
+{
+  "ecommerceApp": {
+    "shoppingCartItem": {
+      "home": {
+        "title": "Shopping Cart Items",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Shopping Cart Item",
+        "createOrEditLabel": "Criar ou editar Shopping Cart Item",
+        "notFound": "Nenhum Shopping Cart Item encontrado"
+      },
+      "created": "Um novo Shopping Cart Item foi criado com o identificador { param }",
+      "updated": "Um Shopping Cart Item foi atualizado com o identificador { param }",
+      "deleted": "Um Shopping Cart Item foi excluído com o identificador { param }",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Shopping Cart Item { id }?"
+      },
+      "detail": {
+        "title": "Shopping Cart Item"
+      },
+      "id": "ID",
+      "quantity": "Quantity",
+      "unitPrice": "Unit Price",
+      "cart": "Cart",
+      "product": "Product"
+    }
+  }
+}

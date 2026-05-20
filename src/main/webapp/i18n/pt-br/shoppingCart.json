@@ -1,0 +1,26 @@
+{
+  "ecommerceApp": {
+    "shoppingCart": {
+      "home": {
+        "title": "Shopping Carts",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Shopping Cart",
+        "createOrEditLabel": "Criar ou editar Shopping Cart",
+        "notFound": "Nenhum Shopping Cart encontrado"
+      },
+      "created": "Um novo Shopping Cart foi criado com o identificador { param }",
+      "updated": "Um Shopping Cart foi atualizado com o identificador { param }",
+      "deleted": "Um Shopping Cart foi excluído com o identificador { param }",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Shopping Cart { id }?"
+      },
+      "detail": {
+        "title": "Shopping Cart"
+      },
+      "id": "ID",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "customer": "Customer"
+    }
+  }
+}

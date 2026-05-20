@@ -1,0 +1,34 @@
+{
+  "ecommerceApp": {
+    "customerOrder": {
+      "home": {
+        "title": "Customer Orders",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Customer Order",
+        "createOrEditLabel": "Criar ou editar Customer Order",
+        "notFound": "Nenhum Customer Order encontrado"
+      },
+      "created": "Um novo Customer Order foi criado com o identificador { param }",
+      "updated": "Um Customer Order foi atualizado com o identificador { param }",
+      "deleted": "Um Customer Order foi excluído com o identificador { param }",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Customer Order { id }?"
+      },
+      "detail": {
+        "title": "Customer Order"
+      },
+      "id": "ID",
+      "orderNumber": "Order Number",
+      "orderDate": "Order Date",
+      "status": "Status",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "shippingCost": "Shipping Cost",
+      "totalPrice": "Total Price",
+      "notes": "Notes",
+      "customer": "Customer",
+      "user": "User",
+      "shippingAddress": "Shipping Address"
+    }
+  }
+}
