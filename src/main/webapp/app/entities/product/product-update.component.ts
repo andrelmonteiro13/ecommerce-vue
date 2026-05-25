@@ -73,12 +73,15 @@ export default defineComponent({
 
     const initRelationships = () => {
       categoryService()
-        .retrieve()
+        .retrieve({
+          page: 0,
+          size: 9999,
+          sort: ['name,asc'],
+        })
         .then(res => {
           categories.value = res.data;
         });
     };
-
     initRelationships();
 
     const dataUtils = useDataUtils();

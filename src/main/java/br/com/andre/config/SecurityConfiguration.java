@@ -57,7 +57,18 @@ public class SecurityConfiguration {
             .addFilterAfter(new SpaWebFilter(), SecurityWebFiltersOrder.HTTPS_REDIRECT)
             .headers(headers ->
                 headers
-                    .contentSecurityPolicy(csp -> csp.policyDirectives(jHipsterProperties.getSecurity().getContentSecurityPolicy()))
+                    .contentSecurityPolicy(csp ->
+                        csp.policyDirectives(
+                            "default-src 'self'; " +
+                                "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+                                "style-src 'self' 'unsafe-inline'; " +
+                                "img-src 'self' data: blob: http://localhost:9000 https:; " +
+                                "font-src 'self' data:; " +
+                                "connect-src 'self' http://localhost:9000; " +
+                                "frame-src 'self' https://www.google.com https://maps.google.com; " +
+                                "child-src 'self' https://www.google.com https://maps.google.com;"
+                        )
+                    )
                     .frameOptions(frameOptions -> frameOptions.mode(Mode.DENY))
                     .referrerPolicy(referrer ->
                         referrer.policy(ReferrerPolicyServerHttpHeadersWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN)
@@ -71,22 +82,24 @@ public class SecurityConfiguration {
             .authorizeExchange(authz ->
                 // prettier-ignore
                 authz
-                    .pathMatchers("/").permitAll()
-                    .pathMatchers("/*.*").permitAll()
-                    .pathMatchers("/api/authenticate").permitAll()
-                    .pathMatchers("/api/register").permitAll()
-                    .pathMatchers("/api/activate").permitAll()
-                    .pathMatchers("/api/account/reset-password/init").permitAll()
-                    .pathMatchers("/api/account/reset-password/finish").permitAll()
-                    .pathMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .pathMatchers("/api/**").authenticated()
-                    .pathMatchers("/services/**").authenticated()
-                    .pathMatchers("/v3/api-docs/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .pathMatchers("/management/health").permitAll()
-                    .pathMatchers("/management/health/**").permitAll()
-                    .pathMatchers("/management/info").permitAll()
-                    .pathMatchers("/management/prometheus").permitAll()
-                    .pathMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                        .pathMatchers("/").permitAll()
+                        .pathMatchers("/*.*").permitAll()
+                        .pathMatchers("/content/**").permitAll()
+                        .pathMatchers("/api/authenticate").permitAll()
+                        .pathMatchers("/api/register").permitAll()
+                        .pathMatchers("/api/activate").permitAll()
+                        .pathMatchers("/api/account/reset-password/init").permitAll()
+                        .pathMatchers("/api/account/reset-password/finish").permitAll()
+                        .pathMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                        .pathMatchers("/api/public/**").permitAll()
+                        .pathMatchers("/api/**").authenticated()
+                        .pathMatchers("/services/**").authenticated()
+                        .pathMatchers("/v3/api-docs/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                        .pathMatchers("/management/health").permitAll()
+                        .pathMatchers("/management/health/**").permitAll()
+                        .pathMatchers("/management/info").permitAll()
+                        .pathMatchers("/management/prometheus").permitAll()
+                        .pathMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
             )
             .httpBasic(basic -> basic.disable())
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(withDefaults()));

@@ -3,7 +3,7 @@
   <div id="app">
     <ribbon></ribbon>
     <div id="app-header">
-      <jhi-navbar></jhi-navbar>
+      <jhi-navbar v-if="!$route.path.startsWith('/site')"></jhi-navbar>
     </div>
     <div class="container-fluid">
       <div class="card jh-card">
@@ -15,7 +15,7 @@
         </template>
         <login-form v-if="loginModalOpen"></login-form>
       </b-modal>
-      <jhi-footer></jhi-footer>
+      <jhi-footer v-if="!$route.path.startsWith('/site')"></jhi-footer>
     </div>
   </div>
 </template>
