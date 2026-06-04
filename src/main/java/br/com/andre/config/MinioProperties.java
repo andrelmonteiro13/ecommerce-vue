@@ -9,6 +9,16 @@ public class MinioProperties {
     private String accessKey;
     private String secretKey;
     private String bucket;
+    private String publicUrl;
+
+public String getPublicUrl() {
+    return publicUrl;
+}
+
+public void setPublicUrl(String publicUrl) {
+    this.publicUrl = publicUrl;
+}
+    
 
     public String getEndpoint() {
         return endpoint;

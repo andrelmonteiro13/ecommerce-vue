@@ -51,7 +51,7 @@ public class FileStorageService {
                         .build()
                 );
 
-                return Mono.just(properties.getEndpoint() + "/" + properties.getBucket() + "/" + objectName);
+                return Mono.just(properties.getPublicUrl() + "/" + properties.getBucket() + "/" + objectName);
             } catch (Exception e) {
                 return Mono.error(new RuntimeException("Erro ao enviar imagem para o MinIO.", e));
             }

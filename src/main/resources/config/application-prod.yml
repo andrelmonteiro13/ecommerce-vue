@@ -17,8 +17,9 @@ logging:
   level:
     ROOT: INFO
     tech.jhipster: INFO
-    br.com.andre: INFO
-
+    br.com.andre: DEBUG
+    io.minio: DEBUG
+    
 management:
   prometheus:
     metrics:
@@ -34,12 +35,12 @@ spring:
   # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
   liquibase:
     contexts: prod
-    url: jdbc:postgresql://localhost:5432/ecommerce
+    url: jdbc:postgresql://postgres_postgres:5432/uniao
   mail:
     host: localhost
     port: 25
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/ecommerce
+    url: r2dbc:postgresql://postgres_postgres:5432/uniao
   thymeleaf:
     cache: true
 
@@ -70,6 +71,14 @@ server:
     mime-types: text/html,text/xml,text/plain,text/css,application/javascript,application/json,image/svg+xml
     min-response-size: 1024
 
+
+storage:
+  minio:
+    endpoint: http://minio:9000
+    public-url: https://minio-uniao.sintegro.com.br
+    access-key: admin
+    secret-key: admin123456
+    bucket: uniao
 # ===================================================================
 # JHipster specific properties
 #
@@ -103,5 +112,6 @@ jhipster:
 # More documentation is available at:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
+
 
 # application:

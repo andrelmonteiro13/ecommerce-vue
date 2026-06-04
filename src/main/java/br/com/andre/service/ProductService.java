@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import java.time.Instant;
+
 
 /**
  * Service Implementation for managing {@link br.com.andre.domain.Product}.
@@ -38,6 +40,11 @@ public class ProductService {
      */
     public Mono<ProductDTO> save(ProductDTO productDTO) {
         LOG.debug("Request to save Product : {}", productDTO);
+
+        Instant now = Instant.now();
+        productDTO.setCreatedDate(now);
+        productDTO.setUpdatedDate(Instant.now());
+
         return productRepository.save(productMapper.toEntity(productDTO)).map(productMapper::toDto);
     }
 
@@ -49,6 +56,9 @@ public class ProductService {
      */
     public Mono<ProductDTO> update(ProductDTO productDTO) {
         LOG.debug("Request to update Product : {}", productDTO);
+
+        productDTO.setUpdatedDate(Instant.now());
+
         return productRepository.save(productMapper.toEntity(productDTO)).map(productMapper::toDto);
     }
 
@@ -65,6 +75,8 @@ public class ProductService {
             .findById(productDTO.getId())
             .map(existingProduct -> {
                 productMapper.partialUpdate(existingProduct, productDTO);
+
+                productDTO.setUpdatedDate(Instant.now());
 
                 return existingProduct;
             })

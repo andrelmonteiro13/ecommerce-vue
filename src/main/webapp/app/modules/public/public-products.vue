@@ -47,8 +47,7 @@
 
             <div class="product-footer">
               <strong>{{ formatCurrency(product.promotionalPrice || product.price) }}</strong>
-
-              <a :href="whatsappLink(product)" target="_blank" class="whatsapp-product"> Pedir </a>
+              <a :href="whatsappLink(product)" target="_blank" class="whatsapp-product">Pedir</a>
             </div>
           </div>
         </article>
@@ -68,6 +67,7 @@ export default defineComponent({
     const productService = new PublicProductService();
 
     const products = ref<IProduct[]>([]);
+    const categories = ref<string[]>([]);
     const isLoading = ref(true);
     const searchTerm = ref('');
     const selectedCategory = ref('');
@@ -75,23 +75,38 @@ export default defineComponent({
     const loadProducts = async () => {
       try {
         const result = await productService.retrieve();
-        products.value = result;
+        products.value = result || [];
       } finally {
         isLoading.value = false;
       }
     };
 
-    const categories = computed(() => {
-      const names = products.value
+    const loadCategories = async () => {
+  categories.value = [
+    ...new Set(
+      products.value
         .map(product => product.category?.name)
-        .filter((name): name is string => !!name && name.trim().length > 0);
-
-      return [...new Set(names)].sort();
-    });
+        .filter((name): name is string => !!name && name.trim().length > 0)
+    ),
+  ].sort();
+};
 
     const filteredProducts = computed(() => {
-      return products.value;
+      const term = searchTerm.value.trim().toLowerCase();
+
+      return products.value.filter(product => {
+        const productName = product.name?.toLowerCase() || '';
+        const productDescription = product.description?.toLowerCase() || '';
+        const productCategory = product.category?.name || '';
+
+        const matchesSearch = !term || productName.includes(term) || productDescription.includes(term);
+
+        const matchesCategory = !selectedCategory.value || productCategory === selectedCategory.value;
+
+        return matchesSearch && matchesCategory;
+      });
     });
+
     const formatCurrency = (value?: number | null) => {
       if (value === null || value === undefined) {
         return 'Preço sob consulta';
@@ -120,7 +135,10 @@ export default defineComponent({
       return `https://wa.me/557932322876?text=${encodeURIComponent(message)}`;
     };
 
-    onMounted(loadProducts);
+   onMounted(async () => {
+  await loadProducts();
+  await loadCategories();
+});
 
     return {
       products,

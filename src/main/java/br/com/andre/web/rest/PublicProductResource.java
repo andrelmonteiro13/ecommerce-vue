@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+
+
 @RestController
 @RequestMapping("/api/public/products")
 public class PublicProductResource {
@@ -23,20 +25,21 @@ public class PublicProductResource {
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<List<ProductDTO>> getActiveProducts() {
         return productRepository
-            .findAll()
-            .filter(product -> Boolean.TRUE.equals(product.getActive()))
-            .map(productMapper::toDto)
-            .collectList();
+                .findAll()
+                .filter(product -> Boolean.TRUE.equals(product.getActive()))
+                .map(productMapper::toDto)
+                .collectList();
     }
+
 
     @GetMapping(value = "/{slug}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ProductDTO> getProductBySlug(@PathVariable String slug) {
         return productRepository
-            .findAll()
-            .filter(product -> Boolean.TRUE.equals(product.getActive()))
-            .filter(product -> product.getSlug() != null)
-            .filter(product -> product.getSlug().equalsIgnoreCase(slug))
-            .next()
-            .map(productMapper::toDto);
+                .findAll()
+                .filter(product -> Boolean.TRUE.equals(product.getActive()))
+                .filter(product -> product.getSlug() != null)
+                .filter(product -> product.getSlug().equalsIgnoreCase(slug))
+                .next()
+                .map(productMapper::toDto);
     }
 }
